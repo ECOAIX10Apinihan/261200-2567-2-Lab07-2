@@ -61,3 +61,11 @@ public class Character {
 //เป็น method ของ Java Standard Library ในคลาส Math
 //คืนค่าระหว่าง x กับ y ที่มีค่ามากที่สุด
 //ในกรณีนี้ Math.max(stamina - staminaCost, 0) จะคืนค่า 0 หากผลลัพธ์ของการคำนวณต่ำกว่า 0
+//แบบเดิม
+//if (stamina - staminaCost < 0) {
+//    stamina = 0;
+//} else {
+//    stamina = stamina - staminaCost;
+//}
+//ดีกว่า
+//stamina = Math.max(stamina - staminaCost, 0);

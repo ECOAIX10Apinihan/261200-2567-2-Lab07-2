@@ -1,49 +1,80 @@
 public class Character {
-    private String name;
-    private int age;
-    private String role;
+    private int health;
+    private int stamina;
+    private final int maxHealth;
+    private final int maxStamina;
 
-    public Character(String name, int age, String role) {
-        this.name = name;
-        this.age = age;
-        this.role = role;
+    // Constructor
+    public Character(int health, int stamina) {
+        this.maxHealth = health;
+        this.maxStamina = stamina;
+        this.health = health;
+        this.stamina = stamina;
+        System.out.println("Character created with " + health + " health and " + stamina + " stamina.");
     }
 
-    public String getName() {
-        return name;
+    // Getters
+    public int getHealth() {
+        return health;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getStamina() {
+        return stamina;
     }
 
-    public int getAge() {
-        return age;
+    // Method: swingSword
+    public void swingSword() {
+        int staminaCost = 10;
+        if (stamina > 0) {
+            stamina = Math.max(stamina - staminaCost, 0);
+            System.out.println("Character swings sword. Stamina is now " + stamina + ".");
+            if (stamina == 0) {
+                System.out.println("Your character needs to cool down.");
+            }
+        } else {
+            System.out.println("Not enough stamina to swing the sword.");
+        }
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    // Method: takeDamage
+    public void takeDamage(int damageAmount) {
+        if (health > 0) {
+            health = Math.max(health - damageAmount, 0);
+            System.out.println("Character takes " + damageAmount + " damage. Health is now " + health + ".");
+            if (health == 0) {
+                System.out.println("Character is dead.");
+            }
+        } else {
+            System.out.println("Character is already dead.");
+        }
     }
 
-    public String getRole() {
-        return role;
+    // Method: rest
+    public void rest() {
+        health = maxHealth;
+        stamina = maxStamina;
+        System.out.println("Character has rested. Health and stamina restored to maximum.");
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "Character{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", role='" + role + '\'' +
-                '}';
-    }
-
+    // Main method for testing
     public static void main(String[] args) {
-        Character character = new Character("John Doe", 30, "Hero");
-        System.out.println(character);
+        // สร้าง instance ของ Character
+        Character hero = new Character(100, 50);
+
+        // Test swingSword() method
+        for (int i = 0; i < 6; i++) {
+            hero.swingSword();
+        }
+
+        // Test takeDamage(...) method
+        hero.takeDamage(30);
+        hero.takeDamage(50);
+        hero.takeDamage(20);
+
+        // Test rest() method
+        hero.rest();
+
+        // แสดงสถานะปัจจุบัน
+        System.out.println("Character's health: " + hero.getHealth() + ", stamina: " + hero.getStamina());
     }
 }

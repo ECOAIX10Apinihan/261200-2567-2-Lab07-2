@@ -56,3 +56,8 @@ public class Character {
         System.out.println("Character has rested. Health and stamina restored to maximum.");
     }
 }
+
+//Math.max(x, y)
+//เป็น method ของ Java Standard Library ในคลาส Math
+//คืนค่าระหว่าง x กับ y ที่มีค่ามากที่สุด
+//ในกรณีนี้ Math.max(stamina - staminaCost, 0) จะคืนค่า 0 หากผลลัพธ์ของการคำนวณต่ำกว่า 0
